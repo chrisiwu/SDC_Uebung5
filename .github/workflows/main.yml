@@ -22,8 +22,8 @@ jobs:
         uses: docker/build-push-action@v3.2.0
         with:
           push: true
-          tags: index.docker.io/chrisiwu/fhtwtest:${{ github.sha }}
-          file: ./streamlit/Dockerfile
+          tags: index.docker.io/chrisiwu/uebung5:${{ github.sha }}
+          file: ./Dockerfile
 
       - name: Azure WebApp
         uses: Azure/webapps-deploy@v2.2.5
