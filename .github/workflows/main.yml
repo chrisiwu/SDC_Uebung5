@@ -23,7 +23,7 @@ jobs:
         with:
           push: true
           tags: index.docker.io/chrisiwu/uebung5:${{ github.sha }}
-          file: ./Dockerfile
+          file: ./docker-compose.yml
       
       - name: Azure WebApp
         uses: Azure/webapps-deploy@v2.2.5
