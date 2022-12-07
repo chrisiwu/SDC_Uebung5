@@ -23,7 +23,7 @@ jobs:
         with:
           push: true
           tags: index.docker.io/chrisiwu/fhtwtest:${{ github.sha }}
-          file: ./streamlit/Dockerfile
+          file: ./Dockerfile
 
       - name: Azure WebApp
         uses: Azure/webapps-deploy@v2.2.5
