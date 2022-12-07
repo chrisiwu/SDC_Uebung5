@@ -1,29 +1,11 @@
 # import the required libraries
 import datetime
-import json
 import matplotlib.pyplot as plt
 import pandas as pd
-import requests
 import seaborn as sns
 import streamlit as st
 
 st.set_page_config(layout = "wide")
-
-# change CSS for h1 and h3
-st.markdown(
-    """
-        <style>
-            h1 {
-                text-align: center;
-                color: grey
-            }
-            h3 {
-                text-align: center;
-                color: grey
-            }
-        </style>
-    """,
-    unsafe_allow_html = True)
 
 # load data using caching mechanism
 @st.cache
@@ -73,17 +55,6 @@ date = st.sidebar.date_input("Datum:",
                              max_value = max(data_covid_cases.loc[str(year)].index))
 state = st.sidebar.selectbox("Bundesland:",
                              states)
-with st.sidebar.form(key = "myForm",
-                     clear_on_submit = True):
-    address = st.text_input("Adresse eingeben:")
-    submit_button = st.form_submit_button("Suchen")
-geo = st.sidebar.empty()
-#geo.text("Geolocation: ")
-
-# Geoloction ermitteln
-if submit_button:
-    res = requests.get(url = "http://geolocation:8000/geolocation?address='" + str(address) + "'") #127.0.0.1, localhost, 0.0.0.0, 0.0.0.0
-    geo.text("Geolocation von " + address + ": " + res.text)
 
 # add a title and intro text
 st.title("Covid19-Dashboard")
