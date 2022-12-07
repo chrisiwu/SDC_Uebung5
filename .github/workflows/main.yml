@@ -19,9 +19,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       
       - name: Build and push Docker images
-	  run: | 
-          docker-compose build
-          docker-compose push
+				run: docker-compose up -d
       
       - name: Azure WebApp
         uses: Azure/webapps-deploy@v2.2.5
