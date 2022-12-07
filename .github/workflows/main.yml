@@ -1,0 +1,32 @@
+name: uebung5
+
+on:
+  create:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.5.0
+
+      - name: Docker Login
+        uses: docker/login-action@v2.1.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v3.2.0
+        with:
+          push: true
+          tags: index.docker.io/chrisiwu/uebung5:${{ github.sha }}
+          file: ./Dockerfile
+      
+      - name: Azure WebApp
+        uses: Azure/webapps-deploy@v2.2.5
+        with:
+          app-name: ds21m006-uebung5
+          publish-profile: ${{ secrets.PUBLISH_PROFILE }}
+          images: index.docker.io/chrisiwu/uebung5:${{ github.sha }}
