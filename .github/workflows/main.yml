@@ -17,9 +17,18 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-      
-			- name: Docker Compose Action
-				uses: isbang/compose-action@v1.4.1
+
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v3.2.0
+        with:
+          push: true
+          tags: index.docker.io/chrisiwu/fhtwtest:${{ github.sha }}
+          file: ./Dockerfile
+
+      - name: Docker Compose Action
+        uses: isbang/compose-action@v1.4.1
+        with:
+          compose-file: "./docker-compose.yml"
       
       - name: Azure WebApp
         uses: Azure/webapps-deploy@v2.2.5
