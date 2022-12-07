@@ -18,8 +18,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       
-      - name: Build and push Docker images
-				run: docker-compose up -d
+			- name: Docker Compose Action
+				uses: isbang/compose-action@v1.4.1
       
       - name: Azure WebApp
         uses: Azure/webapps-deploy@v2.2.5
