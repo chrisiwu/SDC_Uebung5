@@ -57,7 +57,7 @@ state = st.sidebar.selectbox("Bundesland:",
                              states)
 
 # add a title and intro text
-st.title("Covid19-Dashboard")
+st.title("Covid19-Dashboard (Test)")
 
 # Daten entsprechend der Einstellungen filtern
 data_covid_cases = data_covid_cases[data_covid_cases["Bundesland"] == state].loc[str(year)]
